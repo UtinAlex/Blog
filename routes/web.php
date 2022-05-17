@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,11 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return response()->json('OK');
-});
+// Route::get('/', function () {
+//     return response()->json('OK');
+// });
+
+Route::get('/', [BlogController::class, 'getHomePage']);
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');

@@ -44,3 +44,10 @@ services:
       - ./docker-compose/nginx:/etc/nginx/conf.d/
     depends_on:
       - app    
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: 'mailhog'
+    ports:
+      - "1025:1025"
+      - "8025:8025"
