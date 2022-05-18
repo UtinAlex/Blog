@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->midd
 Route::middleware(['auth', 'verified'])->prefix('blog')->group(function () {
     Route::get('/avatar', [BlogController::class, 'getFormAvatar'])->name('avatar');
     Route::post('/upload-avatar{userId}', [BlogController::class, 'uploadAvatar'])->name('uploadAvatar');
+    Route::get('/visibility', [BlogController::class, 'visibility'])->name('visibility');
+
+    Route::get('/create', [PostController::class, 'create'])->name('create');
+    Route::post('/store', [PostController::class, 'store'])->name('store');
+    Route::get('/edit', [PostController::class, 'edit'])->name('edit');
+    Route::put('/update{userId}', [PostController::class, 'update'])->name('update');
+    Route::delete('/destroy{userId}', [PostController::class, 'update'])->name('update');
 });

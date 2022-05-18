@@ -33,7 +33,17 @@
                 
                 <a href="{{ route('avatar', ['userId' => $post->users_id]) }}">
                     <button class="btn btn-primary" id="submit">Загрузить аватар</button>
-                </a><a href="{{back()->getTargetUrl()}}">
+                </a>
+                <a href="{{ route('visibility', ['postId' => $post->id_post]) }}">
+                    <button class="btn btn-primary" id="submit">Изменить видимость поста</button>
+                </a>
+                @if ($post->visibility)
+                    <p>Публичный пост</p>
+                @else
+                    <p>Скрытый пост</p>
+                @endif
+                
+                <a href="{{back()->getTargetUrl()}}">
                     <button class="btn btn-warning" id="submit">Изменить</button>
                 </a>
                 <a href="{{back()->getTargetUrl()}}">

@@ -28,7 +28,9 @@ class HomeController extends Controller
         $user = auth()->user();
         $userIsAdmin = $user->isAdmin();
         if ($userIsAdmin) {
-            $post = Post::join('users', 'posts.users_id', 'users.id')->get();
+            $post = Post::join('users', 'posts.users_id', 'users.id')
+                            ->select('*', 'posts.id as id_post')
+                            ->get();
             $postArr = [
                 'postArr' => $post,
                 'userIsAdmin' => $userIsAdmin,
@@ -37,6 +39,7 @@ class HomeController extends Controller
             ];
         } else {
             $post = Post::join('users', 'posts.users_id', 'users.id')
+                            ->select('*', 'posts.id as id_post')
                             ->where('users_id', $user->id)
                             ->orWhere('visibility', 1)
                             ->get();

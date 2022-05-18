@@ -57,4 +57,21 @@ class BlogController extends Controller
 
         return redirect()->route('home');
     }
+
+    /**
+     * Изменяет видимость поста
+     */
+    public function visibility(Request $request)
+    {
+        $post = Post::find($request->postId);
+        if ($post->visibility) {
+            $post->visibility = 0;
+            $post->save();
+        } else {
+            $post->visibility = 1;
+            $post->save();
+        }
+
+        return redirect()->route('home');
+    }
 }
