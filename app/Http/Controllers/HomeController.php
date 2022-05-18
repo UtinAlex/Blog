@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -27,20 +28,23 @@ class HomeController extends Controller
         $user = auth()->user();
         $userIsAdmin = $user->isAdmin();
         if ($userIsAdmin) {
-            $post = Post::all();
+            $post = Post::join('users', 'posts.users_id', 'users.id')->get();
             $postArr = [
                 'postArr' => $post,
                 'userIsAdmin' => $userIsAdmin,
-                'userId' => $user->id
+                'userId' => $user->id,
+                'avatar' => 'images/'
             ];
         } else {
-            $post = Post::where('users_id', $user->id)
-                ->orWhere('visibility', 1)
-                ->get();
+            $post = Post::join('users', 'posts.users_id', 'users.id')
+                            ->where('users_id', $user->id)
+                            ->orWhere('visibility', 1)
+                            ->get();
             $postArr = [
                 'postArr' => $post,
                 'userIsAdmin' => $userIsAdmin,
-                'userId' => $user->id
+                'userId' => $user->id,
+                'avatar' => 'images/'
             ];
         }
         

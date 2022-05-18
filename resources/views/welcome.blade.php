@@ -39,7 +39,7 @@
                 <h1>Посты для не зарегистрированных пользователей</h1>
                 @foreach ($postArr as $post)
                     <div class="row justify-content-center">
-                        <img class="col-md-4" src="{{ asset('images/i.webp') }}" alt="Avatar" height="35" width="35">
+                        <img class="col-md-4" src="{{ asset($avatar . $post->avatar) }}" alt="Avatar" height="35" width="35">
                         <h4>{{ $post['article'] }}.</h4>
                     </div>
                 @endforeach

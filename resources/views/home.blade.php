@@ -27,11 +27,11 @@
         @foreach ($postArr as $post)
             <div class="row justify-content-left">
                 <hr>
-                <img class="col-md-1" src="{{ asset('images/i.webp') }}" alt="Avatar" height="35" width="35">
+                <img class="col-md-1" src="{{ asset($avatar . $post->avatar) }}" alt="Avatar" height="35" width="35">
                 <h4>{{ $post['article'] }}.</h4>
                 @if ($userIsAdmin or ($userId == $post['users_id']))
                 
-                <a href="{{back()->getTargetUrl()}}">
+                <a href="{{ route('avatar', ['userId' => $post->users_id]) }}">
                     <button class="btn btn-primary" id="submit">Загрузить аватар</button>
                 </a><a href="{{back()->getTargetUrl()}}">
                     <button class="btn btn-warning" id="submit">Изменить</button>

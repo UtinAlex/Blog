@@ -21,4 +21,10 @@ use App\Http\Controllers\BlogController;
 Route::get('/', [BlogController::class, 'getHomePage']);
 Auth::routes(['verify' => true]);
 
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
+Route::middleware(['auth', 'verified'])->prefix('blog')->group(function () {
+    Route::get('/avatar', [BlogController::class, 'getFormAvatar'])->name('avatar');
+    Route::post('/upload-avatar{userId}', [BlogController::class, 'uploadAvatar'])->name('uploadAvatar');
+});
