@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class BlogController extends Controller
 {
@@ -11,8 +12,12 @@ class BlogController extends Controller
      */
     public function getHomePage()
     {
-        // $fieldsForm = Form::all()->toArray();
-        // $fieldsFormArr = ['fieldsForm' => $fieldsForm];
-        return view('welcome');
+        
+        $post = Post::where('visibility', 1)->get();
+        $postArr = [
+            'postArr' => $post
+        ];
+
+        return view('welcome', $postArr);
     }
 }

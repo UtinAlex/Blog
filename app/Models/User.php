@@ -41,4 +41,23 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Роль пользователя.
+     *
+     */
+    public function getRole() {
+        return $this->hasOne(Role::class, 'id', 'roles_id');
+    }
+
+    /**
+     * Является ли пользователь администратором
+     *
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->getRole->name === 'admin';
+    }
+    
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+        $userIsAdmin = $user->isAdmin();
+        if ($userIsAdmin) {
+            $post = Post::all();
+            $postArr = [
+                'postArr' => $post,
+                'userIsAdmin' => $userIsAdmin,
+                'userId' => $user->id
+            ];
+        } else {
+            $post = Post::where('users_id', $user->id)
+                ->orWhere('visibility', 1)
+                ->get();
+            $postArr = [
+                'postArr' => $post,
+                'userIsAdmin' => $userIsAdmin,
+                'userId' => $user->id
+            ];
+        }
+        
+        return view('home', $postArr);
     }
 }
