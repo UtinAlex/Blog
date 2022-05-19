@@ -21,16 +21,16 @@
     </div>
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <h1>Посты для блогеров</h1>
-        <a href="{{back()->getTargetUrl()}}">
-            <button class="btn btn-success" id="submit">Добавить пост</button>
-        </a>
+        
         @foreach ($postArr as $post)
             <div class="row justify-content-left">
                 <hr>
                 <img class="col-md-1" src="{{ asset($avatar . $post->avatar) }}" alt="Avatar" height="35" width="35">
                 <h4>{{ $post['article'] }}.</h4>
                 @if ($userIsAdmin or ($userId == $post['users_id']))
-                
+                <a href="{{route('create', ['userId' => $post->users_id])}}">
+                    <button class="btn btn-success" id="submit">Добавить пост</button>
+                </a>
                 <a href="{{ route('avatar', ['userId' => $post->users_id]) }}">
                     <button class="btn btn-primary" id="submit">Загрузить аватар</button>
                 </a>

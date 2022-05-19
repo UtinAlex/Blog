@@ -22,9 +22,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $postArr = [
+            'userId' => $request->userId
+        ];        
+
+        return view('addPostForm', $postArr);
     }
 
     /**
@@ -35,7 +39,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->visibility);
+        $createPostArr = [
+            'users_id' => $request->userId,
+            'article' => $request->textpost,
+            'visibility' => $request->visibility
+        ];
+        Post::create($createPostArr);
+
+        return redirect()->route('home');
     }
 
     /**
