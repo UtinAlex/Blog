@@ -19,3 +19,6 @@ bloger@test.com
 
 http://localhost:8
 025  -- тестирование почты при регистрации исользуем maihog
+
+Запустить тесты
+docker exec blog-api php artisan test
