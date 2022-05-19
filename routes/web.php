@@ -33,6 +33,6 @@ Route::middleware(['auth', 'verified'])->prefix('blog')->group(function () {
     Route::get('/create', [PostController::class, 'create'])->name('create');
     Route::post('/store', [PostController::class, 'store'])->name('store');
     Route::get('/edit', [PostController::class, 'edit'])->name('edit');
-    Route::put('/update{userId}', [PostController::class, 'update'])->name('update');
-    Route::delete('/destroy{userId}', [PostController::class, 'update'])->name('update');
+    Route::put('/update', [PostController::class, 'update'])->name('update');
+    Route::delete('/destroy', [PostController::class, 'update'])->name('destroy');
 });

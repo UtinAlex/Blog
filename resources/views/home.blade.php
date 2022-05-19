@@ -43,7 +43,7 @@
                     <p>Скрытый пост</p>
                 @endif
                 
-                <a href="{{back()->getTargetUrl()}}">
+                <a href="{{ route('edit', ['postId' => $post->id_post]) }}">
                     <button class="btn btn-warning" id="submit">Изменить</button>
                 </a>
                 <a href="{{back()->getTargetUrl()}}">

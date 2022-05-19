@@ -67,9 +67,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Request $request)
     {
-        //
+        $post = $post->find($request->postId);
+        //dd($post);
+        $postArr = [
+            'post' => $post,
+        ];        
+
+        return view('editPostForm', $postArr);
     }
 
     /**
@@ -81,7 +87,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        //dd($request->postId);
+        $post = $post->find($request->postId);
+        $post->article = $request->textpost;
+        $post->visibility = $request->visibility;
+        $post->save();
+        
+        return redirect()->route('home');
     }
 
     /**
