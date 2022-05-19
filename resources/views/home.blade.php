@@ -46,9 +46,11 @@
                 <a href="{{ route('edit', ['postId' => $post->id_post]) }}">
                     <button class="btn btn-warning" id="submit">Изменить</button>
                 </a>
-                <a href="{{back()->getTargetUrl()}}">
+                <form action="{{ route('destroy', ['postId' => $post->id_post]) }}" method="POST">
+                    @method('DELETE')     
+                    @csrf
                     <button class="btn btn-danger" id="submit">Удалить</button>
-                </a>
+                </form>
                 @endif
             </div>
         @endforeach

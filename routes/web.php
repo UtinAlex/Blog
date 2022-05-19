@@ -34,5 +34,5 @@ Route::middleware(['auth', 'verified'])->prefix('blog')->group(function () {
     Route::post('/store', [PostController::class, 'store'])->name('store');
     Route::get('/edit', [PostController::class, 'edit'])->name('edit');
     Route::put('/update', [PostController::class, 'update'])->name('update');
-    Route::delete('/destroy', [PostController::class, 'update'])->name('destroy');
+    Route::delete('/destroy', [PostController::class, 'destroy'])->name('destroy');
 });

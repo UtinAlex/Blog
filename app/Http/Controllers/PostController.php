@@ -87,7 +87,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //dd($request->postId);
         $post = $post->find($request->postId);
         $post->article = $request->textpost;
         $post->visibility = $request->visibility;
@@ -102,8 +101,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, Request $request)
     {
-        //
+        $post = $post->find($request->postId);
+        $post->delete();
+        
+        return redirect()->route('home');
     }
 }
