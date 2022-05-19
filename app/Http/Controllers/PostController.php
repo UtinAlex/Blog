@@ -26,7 +26,7 @@ class PostController extends Controller
     {
         $postArr = [
             'userId' => $request->userId
-        ];        
+        ];
 
         return view('addPostForm', $postArr);
     }
@@ -73,7 +73,7 @@ class PostController extends Controller
         //dd($post);
         $postArr = [
             'post' => $post,
-        ];        
+        ];
 
         return view('editPostForm', $postArr);
     }

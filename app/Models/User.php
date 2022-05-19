@@ -46,7 +46,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * Роль пользователя.
      *
      */
-    public function getRole() {
+    public function getRole()
+    {
         return $this->hasOne(Role::class, 'id', 'roles_id');
     }
 
@@ -59,5 +60,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->getRole->name === 'admin';
     }
-    
 }

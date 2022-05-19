@@ -28,10 +28,10 @@ class BlogController extends Controller
      * Возвращает форму загрузки аватарки
      */
     public function getFormAvatar(Request $request)
-    {   
+    {
         $postArr = [
             'userId' => $request->userId
-        ];        
+        ];
 
         return view('avatarForm', $postArr);
     }
@@ -41,9 +41,8 @@ class BlogController extends Controller
      */
     public function uploadAvatar(Request $request, $userId)
     {
-        if($request->isMethod('post')){
-
-            if($request->hasFile('avatar')) {
+        if ($request->isMethod('post')) {
+            if ($request->hasFile('avatar')) {
                 $file = $request->file('avatar');
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/images', $fileName);
@@ -51,9 +50,8 @@ class BlogController extends Controller
                 $user = User::find($userId);
                 $user->avatar = $fileName;
                 $user->save();
-            
             }
-         }
+        }
 
         return redirect()->route('home');
     }

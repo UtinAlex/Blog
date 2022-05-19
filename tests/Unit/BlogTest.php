@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-//use PHPUnit\Framework\TestCase;
 use Tests\TestCase;
 
 class BlogTest extends TestCase
@@ -29,7 +28,6 @@ class BlogTest extends TestCase
             'email' => 'admin@test.com',
             'password' => '12345678'
         ]);
-
         $response = $this->get('/home');
         $response->assertOk();
     }
@@ -45,12 +43,7 @@ class BlogTest extends TestCase
             'email' => 'admin@test.com',
             'password' => 'wrong_pass'
         ]);
-
         $response = $this->get('/home');
-        //dd($response->status());
         $response->assertRedirect('/login');
     }
-
-
-
 }
