@@ -21,7 +21,11 @@
     </div>
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <h1>Посты для блогеров</h1>
-        
+        @if (!$userIsAdmin)
+        <a href="{{route('create', ['userId' => $userId])}}">
+            <button class="btn btn-success" id="submit">Добавить пост</button>
+        </a>
+        @endif
         @foreach ($postArr as $post)
             <div class="row justify-content-left">
                 <hr>
